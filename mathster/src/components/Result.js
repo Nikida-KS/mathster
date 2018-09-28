@@ -4,17 +4,22 @@ class Result extends React.Component {
   constructor(props){
     super(props);
   }
-  renderQuestins(){
-    return  this.props.quizResult.map((_data,index) =>{
-        return <div className="list-grp">{_data.question} <br/>correct answer is option: {_data.answerindex} :  and you have selcted {this.props.answers[index]+1} { ((this.props.answers[index]+1) === _data.answerindex) ? (<span className="status">its correct !man</span>) : ''}</div>
+  renderQuestions(){
+    return  this.props.quizResult.map((data,index) =>{
+        return <div className="list-grp">
+          {data.question}=
+          <br></br>You chose {data.answers[this.props.answers[index]].content}
+          <br></br>{data.answers[this.props.answers[index]].type}
+          </div>
     })
   }
+
   render (){
     return (
     <div  className="quiz-story">
       <div>
         <strong>Lets see your results</strong>!
-        <div>{this.renderQuestins()}</div>
+        <div>{this.renderQuestions()}</div>
       </div>
     </div>
     )

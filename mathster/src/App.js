@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import quizQuestions from './api/questions';
 import Quiz from './components/Quiz';
 import Result from './components/Result';
-import logo from './svg/logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -20,6 +19,7 @@ class App extends Component {
       selectedAnswers : {},
       result: ''
     };
+
     this.setNextQuestion = this.setNextQuestion.bind(this);
     this.setPreviousQuestion = this.setPreviousQuestion.bind(this);
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
@@ -27,15 +27,16 @@ class App extends Component {
 
 
   }
+
+
   handleAnswerSelected(e){
-    var _self = this;
-    var obj = _self.state.selectedAnswers;
-    var index = parseInt(e.target.value);
-    console.log("for selected question number " + (_self.state.counter + 1) +  " answer is " + index + " selected");
-    var Qindex = (_self.state.counter )
-    // create map and store all selecred answers with quiz Questions
+    let selection = this;
+    let obj = selection.state.selectedAnswers;
+    let index = parseInt(e.target.value);
+    let Qindex = (selection.state.counter )
+    // stores all selected answers with corresponding quiz questions even if we change the api
     obj[Qindex] = index;
-    _self.setState({selectedAnswers : obj})
+    selection.setState({selectedAnswers : obj})
 
   }
 
@@ -60,6 +61,7 @@ class App extends Component {
       answer: ''
     });
   }
+
   setPreviousQuestion() {
     const counter = this.state.counter - 1;
     const questionId = this.state.questionId - 1;
@@ -121,8 +123,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Quiz Assignment :</h2>
+          <h2>Subtract Within 1000:</h2>
         </div>
         {this.state.result ? this.renderResult() : this.renderQuiz()}
 
